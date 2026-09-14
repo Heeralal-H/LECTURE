@@ -1,0 +1,8 @@
+services:
+  lecture2learning:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./lecture2learning.db:/app/lecture2learning.db

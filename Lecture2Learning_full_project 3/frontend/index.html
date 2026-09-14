@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture2Learning</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">L2L</span>
+      <div><strong>Lecture2Learning</strong><small>Department of Computer Science & Engineering</small></div>
+    </div>
+    <div id="user-area"></div>
+  </header>
+
+  <main>
+    <section id="auth-view" class="auth-card">
+      <div class="hero">
+        <p class="eyebrow">PERSONAL PROJECT · REVIEW</p>
+        <h1>Lecture2<br>Learning</h1>
+        <p>Turn any lecture PDF into a topic-tagged quiz — and a personalized learning report on exactly what to revise.</p>
+      </div>
+      <div class="auth-panel">
+        <div class="tabs">
+          <button class="tab active" onclick="showAuth('login')">Login</button>
+          <button class="tab" onclick="showAuth('register')">Register</button>
+        </div>
+        <form id="login-form" onsubmit="login(event)">
+          <input id="login-email" type="email" placeholder="Email" required>
+          <input id="login-password" type="password" placeholder="Password" required>
+          <button class="primary">Login</button>
+        </form>
+        <form id="register-form" class="hidden" onsubmit="register(event)">
+          <input id="reg-name" type="text" placeholder="Full name" required>
+          <input id="reg-email" type="email" placeholder="Email" required>
+          <input id="reg-password" type="password" placeholder="Password (6+ characters)" required>
+          <button class="primary">Create account</button>
+        </form>
+        <div id="auth-message" class="message"></div>
+      </div>
+    </section>
+
+    <section id="app-view" class="hidden">
+      <div class="welcome">
+        <div>
+          <p class="eyebrow">LEARNING DASHBOARD</p>
+          <h1 id="welcome-name">Welcome</h1>
+          <p>Upload a lecture, generate a quiz, and discover exactly what you need to revise.</p>
+        </div>
+        <label class="upload-btn">
+          + Upload Lecture PDF
+          <input id="pdf-file" type="file" accept=".pdf" onchange="uploadPDF(event)">
+        </label>
+      </div>
+
+      <div class="stats" id="stats"></div>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-title"><h2>Your Lectures</h2><span>PDF → Quiz</span></div>
+          <div id="lectures"></div>
+        </section>
+        <section class="card">
+          <div class="card-title"><h2>Recent Attempts</h2><span>Progress</span></div>
+          <div id="attempts"></div>
+        </section>
+      </div>
+
+      <section id="quiz-section" class="card hidden">
+        <div class="card-title">
+          <div><p class="eyebrow">QUIZ</p><h2 id="quiz-title"></h2></div>
+          <button class="secondary" onclick="closeQuiz()">Close</button>
+        </div>
+        <div id="quiz-container"></div>
+        <button class="primary wide" onclick="submitQuiz()">Submit Quiz</button>
+      </section>
+
+      <section id="report-section" class="card hidden">
+        <div class="card-title">
+          <div><p class="eyebrow">PERSONALIZED REPORT</p><h2>What to revise</h2></div>
+          <button class="secondary" onclick="closeReport()">Close</button>
+        </div>
+        <div id="report"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
